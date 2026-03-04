@@ -1,2 +1,2 @@
-rootProject.name = "AstralisVisus"
+rootProject.name = "AstraVisus"
 
