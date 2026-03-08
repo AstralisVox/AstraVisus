@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id("java")
     id("maven-publish")
@@ -5,18 +7,18 @@ plugins {
     id("com.gradleup.shadow") version "9.3.2"
 }
 
-group = "me.astravisvox"
+group = "me.astralisvox"
 version = "1.0.0"
 
 repositories {
     mavenCentral()
-    gradlePluginPortal()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     maven("https://jitpack.io")
     maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 }
 
 dependencies {
+    implementation(files(layout.projectDirectory.file("libs/AstraLibs-1.0.0.jar")))
     implementation("org.bstats:bstats-bukkit:3.2.1")
     compileOnly("org.spigotmc:spigot-api:1.21.11-R0.2-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.12.2")
@@ -27,13 +29,14 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(22))
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = Charsets.UTF_8.name()
-    options.release.set(22)
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+    options.isIncremental = true
 }
 
-tasks."named("shadowJar", com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
-archiveFileName.set("${project.name}-${project.version}.jar")
-enableRelocation = true
-relocationPrefix = "me.astralisvox.astravisus.libs"
+tasks.named<ShadowJar>("shadowJar") {
+  archiveFileName.set("${project.name}-${project.version}.jar")
+  relocationPrefix = "me.astralisvox.astravisus.libs"
+  relocate("org.bstats", "me.astralisvox.astravisus.libs.bstats")
+  relocate("me.astralisvox.astralibs", "me.astralisvox.astravisus.libs.astralibs")
 }
