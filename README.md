@@ -26,7 +26,7 @@ Below you can find all the different features that I've implemented into the plu
 
 ### Downloading:
 
-You can always find the latest version by visiting the [Spigot](https://www.spigotmc.org/resources/omegavision.73013/)
+You can always find the latest version by visiting the [Spigot](https://www.spigotmc.org/resources/astravisus.133245/)
 page. This plugin works on all Bukkit/Spigot/Paper servers from version 1.13 and above.
 
 ### Installing:
@@ -52,7 +52,7 @@ I have spent some time setting up a discord server that you are welcome to join 
 
 ### Spigot
 
-Of course, we have the normal contact method of using the SpigotMC website or McMarket website. You can locate my profile here: https://www.spigotmc.org/members/omegaweapondev.14953/, Feel free to privately message me about anything related to any of my plugins.
+Of course, we have the normal contact method of using the SpigotMC website or McMarket website. You can locate my profile here: https://www.spigotmc.org/members/astralisvox.14953/, Feel free to privately message me about anything related to any of my plugins.
 
 ### **GitHub**
 

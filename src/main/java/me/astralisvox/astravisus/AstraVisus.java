@@ -44,7 +44,7 @@ public final class AstraVisus extends JavaPlugin {
         getUserDataHandler().populateUserDataMap();
 
         setupPlaceholders(pluginInstance);
-        //updateChecker();
+        updateChecker();
         setupEconomy();
         registerEvents();
         registerCommands();
@@ -98,7 +98,7 @@ public final class AstraVisus extends JavaPlugin {
                 Utilities.logWarning(true,
                         "A new version of " + pdf.getName() + " is avaliable!",
                         "Current Version: " + pdf.getVersion() + " > New Version: " + version,
-                        "Grab it here: https://www.spigotmc.org/resources/omegavision.73013/"
+                        "Grab it here: https://www.spigotmc.org/resources/astravisus.133245/"
                 );
             });
         }
