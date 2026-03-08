@@ -1,14 +1,14 @@
-![Banner](https://imgur.com/a/F4XRXCX)
+![Banner](https://i.imgur.com/Q086g9i.png)
 
 AstralVisus is a simple modern plugin that allows players to toggle their nightvision on or off with a simple command. You are also able to enable or disable all the features easily inside the config.yml. All the messages are also fully customizable.
 
-For further information about this plugin, please see the [wiki](https://github.com/AstralisVox/AstraVisus/wiki). Where you are able to find all the in depth information about OmegaVision, all the commands and permissions as well.
+For further information about this plugin, please see the [wiki](https://github.com/AstralisVox/AstraVisus/wiki). Where you are able to find all the in depth information about AstraVisus, all the commands and permissions as well.
 
 ***
 
 ## **Features**
 
-Below you can find all the different features that I've implemented into the plugin. If you have any features that you're wanting added to this plugin. Please send me a feature request via the [issues](https://github.com/OmegaWeaponDev/OmegaVision/issues) page, as that allows me to keep track of all the suggestions in one location.
+Below you can find all the different features that I've implemented into the plugin. If you have any features that you're wanting added to this plugin. Please send me a feature request via the [issues](https://github.com/AstralisVox/AstraVisus/issues) page, as that allows me to keep track of all the suggestions in one location.
 
 | Feature | Description |
 | ------- | ----------- |
