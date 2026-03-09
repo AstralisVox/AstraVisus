@@ -30,6 +30,7 @@ permissions:
       astravisus.reload: true
       astravisus.nightvision.admin: true
       astravisus.updates: true
+      astravisus.debug: true
 
   astravisus.nightvision.admin:
     description: The wildcard permission for give all nightvision permissions
@@ -51,6 +52,10 @@ permissions:
 
   astravisus.updates:
     description: The permission used to receive plugin update notifications.
+    default: op
+
+  astravisus.debug:
+    description: The permission for the debug command
     default: op
 
   astravisus.nightvision.toggle:

@@ -151,6 +151,11 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
 
         if(commandSender instanceof Player player) {
 
+            if(!Utilities.checkPermissions(player, true, "astravisus.debug", "astravisus.admin")) {
+                Utilities.message(player, messageHandler.get("No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
+                return;
+            }
+
             for(Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
                 plugins.append("#ff4a4a").append(plugin.getName()).append(" ").append(plugin.getDescription().getVersion()).append("#14abc9, ");
             }
