@@ -1,0 +1,83 @@
+# -------------------------------------------------------------------------------------------
+#
+#  AstraVisus Messages File
+#
+#  All player-facing messages are stored here. You can freely edit colors, wording,
+#  and formatting without breaking the plugin.
+#
+#  Placeholders:
+#    %player%  - Target player's name
+#    %state%   - "enabled" or "disabled"
+#    %cost%    - Cost of enabling NightVision
+#
+# -------------------------------------------------------------------------------------------
+
+# ===========================
+# Global Prefix
+# ===========================
+Prefix: "&8[&bAstraVisus&8]&r "
+
+# ===========================
+# NightVision Toggle Messages
+# ===========================
+NightVision:
+  Enabled: "&aNightVision has been &lENABLED&r&a."
+  Disabled: "&cNightVision has been &lDISABLED&r&c."
+  Enabled_Other: "&aYou enabled NightVision for &e%player%&a."
+  Disabled_Other: "&cYou disabled NightVision for &e%player%&c."
+  Already_Enabled: "&eNightVision is already enabled."
+  Already_Disabled: "&eNightVision is already disabled."
+
+  # ActionBar messages (only used if ActionBar_Message is enabled in config.yml)
+  ActionBar:
+    Enabled: "&aNightVision &7→ &aON"
+    Disabled: "&cNightVision &7→ &cOFF"
+
+# ===========================
+# World Restrictions
+# ===========================
+Worlds:
+  Disabled_World: "&cNightVision cannot be used in this world."
+  Auto_Disabled: "&eNightVision has been disabled due to world restrictions."
+
+# ===========================
+# Cost System Messages
+# ===========================
+Cost:
+  Charged: "&aYou have been charged &e%cost% &afor enabling NightVision."
+  Not_Enough_Money: "&cYou do not have enough money to enable NightVision."
+
+# ===========================
+# List Command Messages
+# ===========================
+List:
+  Header: "&aPlayers with NightVision enabled:"
+  Entry: "&7- &e%player%"
+  None: "&eNo players currently have NightVision enabled."
+
+# ===========================
+# Admin & Utility Messages
+# ===========================
+Admin:
+  Reloaded: "&aConfiguration and settings reloaded successfully."
+  No_Permission: "&cYou do not have permission to use this command."
+  Player_Not_Found: "&cPlayer not found."
+
+# ===========================
+# Particle Messages
+# ===========================
+Particles:
+  Enabled: "&aParticle effects enabled."
+  Disabled: "&cParticle effects disabled."
+
+# ===========================
+# Update Notifications
+# ===========================
+Updates:
+  Available: "&eA new version of AstraVisus is available! &7(You are running %current%, latest is %latest%)"
+  Up_To_Date: "&aYou are running the latest version of AstraVisus."
+
+# ===========================
+# Internal Use Only
+# ===========================
+Config_Version: 1.0

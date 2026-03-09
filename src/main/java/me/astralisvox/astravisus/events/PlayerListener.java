@@ -110,7 +110,7 @@ public class PlayerListener implements Listener {
             }
 
             // Checks if the player has permission to keep their night vision when they die
-            if(!Utilities.checkPermissions(player, false, "omegavision.nightvision.keepondeath", "omegavision.nightvision.admin", "omegavision.admin")) {
+            if(!Utilities.checkPermissions(player, false, "astravisus.nightvision.keepondeath", "astravisus.nightvision.admin", "astravisus.admin")) {
                 userDataHandler.setEffectStatus(player.getUniqueId(), false, UserDataHandler.NIGHT_VISION);
                 Utilities.removePotionEffect(player, PotionEffectType.NIGHT_VISION);
                 return;

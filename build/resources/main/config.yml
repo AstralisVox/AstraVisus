@@ -1,0 +1,71 @@
+# -------------------------------------------------------------------------------------------
+#
+#  AstraVisus Configuration File.
+#
+# Customize NightVision behaviour and plugin features to suit your server.
+# Most features are configurable and permission‑controlled.
+#
+#  Wiki: https://github.com/AstralisVox/AstraVisus/wiki
+#  Issues: https://github.com/AstralisVox/AstraVisus/issues
+#
+# -------------------------------------------------------------------------------------------
+
+# The main settings for nightvision
+Night_Vision_Settings:
+  # Should players keep night vision when they login/logout
+  # If enabled, players will need the permission `astravisus.nightvision.login`
+  Night_Vision_Login: true
+
+  # Should players receive particle effects when they have nightvision enabled
+  Particle_Effects: true
+
+  # Should players receive particles produce more, translucent, particles when they have nightvision enabled
+  # Requires `Particle_Effects` to be enabled
+  Particle_Ambient: true
+
+  # Should players receive the icon on the screen when nightvision is enabled
+  Night_Vision_Icon: true
+
+  # Should players receive an actionBar message when they enable/disable nightvision
+  ActionBar_Message: true
+
+  # Should players keep nightvision enabled when they die and respawn
+  Keep_Night_Vision_On_Death: true
+
+  # Should players be charged a price for enabling night vision
+  # Players with the permission `astravisus.nightvision.cost.bypass` will not be charged regardless of this setting
+  Night_Vision_Cost:
+    Enabled: false
+    Cost: 10.0
+
+# ===========================
+# World Behaviour Settings
+# ===========================
+
+# The different settings for how nightvision is handled upon world change
+Night_Vision_World_Settings:
+  Enabled: false
+  # Should players keep nightvision when they change worlds
+  # If players have astravisus.nightvision.world.bypass they will bypass these settings and keep their
+  # current nightvision status and can change their nightvision regardless of the disabled worlds below
+  Keep_Night_Vision_On_World_Change: true
+  # The list of worlds nightvision will automatically be disabled for
+  # Players will not be able to toggle nightvision back on for these worlds even if they have the permission
+  Disabled_Worlds:
+    Worlds:
+    - world_nether
+    - world_the_end
+
+# ===========================
+# Update Notifications
+# ===========================
+
+# If set to true, those with the permission astravisus.updates will receive messages
+# when the plugin updates on spigot
+Update_Notify: true
+
+# ===========================
+# Internal Use Only
+# ===========================
+# Do not modify. Used for automatic config migration.
+Config_Version: 1.0
