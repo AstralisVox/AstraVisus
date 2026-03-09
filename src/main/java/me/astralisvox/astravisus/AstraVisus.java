@@ -1,6 +1,7 @@
 package me.astralisvox.astravisus;
 
 import me.astralisvox.astralibs.Utilities;
+import me.astralisvox.astralibs.chat.AudienceManager;
 import me.astralisvox.astravisus.commands.NightVisionCommand;
 import me.astralisvox.astravisus.commands.PluginCommand;
 import me.astralisvox.astravisus.events.PlayerListener;
@@ -26,17 +27,18 @@ public final class AstraVisus extends JavaPlugin {
 
         Utilities.logInfo(false,
 
-             "___    __      __",
-            "/ _ \\   \\ \\    / /",
+             "  ___    __      __",
+            " / _ \\   \\ \\    / /",
             "/ /_\\ \\   \\ \\  / /  AstraVisus v" + pluginInstance.getDescription().getVersion() + " by AstralisVox",
-            "|  _  |    \\ \\/ /   Running on version: " + Bukkit.getVersion(),
-            "| | | |     \\  /",
+            "|  _  |    \\ \\/ /   Running on version: " + Bukkit.getName() + " " + Bukkit.getVersion(),
+            "| | | |     \\  /    Discord: https://discord.gg/rCEcVaybTC Github: https://github.com/AstralisVox/AstraVisus",
             "\\_| |_/      \\/"
         );
 
         fileManager = new FileManager(pluginInstance);
         getFileManager().setupFiles();
         getFileManager().configUpdater();
+        AudienceManager.init(pluginInstance);
 
         userDataHandler = new UserDataHandler(pluginInstance);
         messageHandler = new MessageHandler(fileManager.getMessagesFile().getConfig());
@@ -51,6 +53,12 @@ public final class AstraVisus extends JavaPlugin {
         registerEvents();
         registerCommands();
         getUpdateChecker().pluginUpdatesConsole();
+    }
+
+    @Override
+    public void onDisable() {
+        userDataHandler.saveUserDataToFile();
+        AudienceManager.shutdown();
     }
 
     public void onReload() {

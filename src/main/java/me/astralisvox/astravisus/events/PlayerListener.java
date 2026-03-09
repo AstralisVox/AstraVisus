@@ -2,9 +2,6 @@ package me.astralisvox.astravisus.events;
 
 import me.astralisvox.astralibs.Utilities;
 import me.astralisvox.astravisus.AstraVisus;
-import me.astralisvox.astravisus.utils.MessageHandler;
-import me.astralisvox.astravisus.utils.NightVisionHandler;
-import me.astralisvox.astravisus.utils.UpdateChecker;
 import me.astralisvox.astravisus.utils.UserDataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;

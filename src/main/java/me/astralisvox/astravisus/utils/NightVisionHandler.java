@@ -41,10 +41,10 @@ public class NightVisionHandler {
         nightVisionIcon = configFile.getBoolean("Night_Vision_Settings.Night_Vision_Icon");
         actionBarMessages = configFile.getBoolean("Night_Vision_Settings.ActionBar_Messages");
 
-        nightVisionApplied = messagesHandler.get("NightVision.Night_Vision_Applied", "#2b9bbfNight Vision has been applied!");
-        nightVisionRemoved = messagesHandler.get("NightVision.Night_Vision_Removed", "#f63e3eNight Vision has been removed!");
-        nightVisionAppliedActionbar = messagesHandler.get("NightVision.ActionBar_Night_Vision_Applied", "#2b9bbfNight vision has been applied!");
-        nightVisionRemovedActionbar = messagesHandler.get("NightVision.ActionBar_Night_Vision_Removed", "#f63e3eNight Vision has been removed!");
+        nightVisionApplied = messagesHandler.get("NightVision.Enabled", "#2b9bbfNight Vision has been applied!");
+        nightVisionRemoved = messagesHandler.get("NightVision.Disabled", "#f63e3eNight Vision has been removed!");
+        nightVisionAppliedActionbar = messagesHandler.get("NightVision.ActionBar.Enabled", "#2b9bbfNight vision has been applied!");
+        nightVisionRemovedActionbar = messagesHandler.get("NightVision.ActionBar.Disabled", "#f63e3eNight Vision has been removed!");
     }
 
     /**

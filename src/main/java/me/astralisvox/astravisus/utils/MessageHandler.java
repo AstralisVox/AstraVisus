@@ -42,7 +42,7 @@ public class MessageHandler {
         if(Objects.requireNonNull(messagesConfig.getString("Prefix")).equalsIgnoreCase("none")) {
             return "";
         }
-        return messagesConfig.getString("Prefix") + " ";
+        return messagesConfig.getString("Prefix");
     }
 
     private void getErrorMessage(final String message) {

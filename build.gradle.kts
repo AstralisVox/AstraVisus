@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation(files(layout.projectDirectory.file("libs/AstraLibs-1.0.0.jar")))
+    implementation(files(layout.projectDirectory.file("libs/AstraLibs-1.0.1.jar")))
     implementation("org.bstats:bstats-bukkit:3.2.1")
     compileOnly("org.spigotmc:spigot-api:1.21.11-R0.2-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.12.2")

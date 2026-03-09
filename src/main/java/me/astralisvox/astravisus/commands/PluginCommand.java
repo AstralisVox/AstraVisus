@@ -20,10 +20,12 @@ import java.util.List;
 public class PluginCommand extends GlobalCommand implements TabCompleter {
     private final AstraVisus pluginInstance;
     private final MessageHandler messageHandler;
+    private final String prefix;
 
     public PluginCommand(final AstraVisus pluginInstance) {
         this.pluginInstance = pluginInstance;
         messageHandler = pluginInstance.getMessageHandler();
+        prefix = messageHandler.getPrefix();
     }
 
     @Override
@@ -95,7 +97,7 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
                 return;
             }
 
-            Utilities.message(player, messageHandler.getPrefix() + "#86DE0FAstraVisus #CA002Ev" + pluginInstance.getDescription().getVersion() + " #86DE0FBy AstralisVox");
+            Utilities.message(player, prefix + "#86DE0FAstraVisus #CA002Ev" + pluginInstance.getDescription().getVersion() + " #86DE0FBy AstralisVox");
             return;
         }
 
@@ -112,22 +114,22 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
      */
     private void helpCommand(final CommandSender sender) {
         if(sender instanceof Player player) {
-            versionCommand(player);
-            Utilities.message(player,
-                    messageHandler.getPrefix() + "#86DE0FReload Command: #CA002E/astravisus reload",
-                    messageHandler.getPrefix() + "#86DE0FVersion Command: #CA002E/astravisus version",
-                    messageHandler.getPrefix() + "#86DE0FHelp Command: #CA002E/astravisus help",
-                    messageHandler.getPrefix() + "#86DE0FNight Vision Toggle Command: #CA002E/nightvision",
-                    messageHandler.getPrefix() + "#86DE0FNight Vision Toggle Others Command: #CA002E/nightvision <player>",
-                    messageHandler.getPrefix() + "#86DE0FNight Vision Global Command: #CA002E/nightvision global add|remove",
-                    messageHandler.getPrefix() + "#86DE0FNight Vision Temp Command: #CA002E/nightvision <player> <time>",
-                    messageHandler.getPrefix() + "#86DE0FNight Vision List Command: #CA002E/nightvision list"
+            List<String> helpMessages = List.of(
+                prefix + "&#86DE0FReload Command: &#CA002E/astravisus reload",
+                prefix + "&#86DE0FVersion Command: &#CA002E/astravisus version",
+                prefix + "&#86DE0FHelp Command: &#CA002E/astravisus help",
+                prefix + "&#86DE0FNight Vision Toggle Command: &#CA002E/nightvision",
+                prefix + "&#86DE0FNight Vision Toggle Others Command: &#CA002E/nightvision <player>",
+                prefix + "&#86DE0FNight Vision Global Command: &#CA002E/nightvision global add|remove",
+                prefix + "&#86DE0FNight Vision Temp Command: &#CA002E/nightvision <player> <time>",
+                prefix + "&#86DE0FNight Vision List Command: &#CA002E/nightvision list"
             );
+
+            Utilities.message(player, Utilities.parseList(helpMessages));
             return;
         }
 
         if(sender instanceof ConsoleCommandSender) {
-            versionCommand(sender);
             Utilities.logInfo(true,
                     "Reload Command: /astravisus reload",
                     "Version Command: /astravisus version",
@@ -160,19 +162,21 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
                 plugins.append("#ff4a4a").append(plugin.getName()).append(" ").append(plugin.getDescription().getVersion()).append("#14abc9, ");
             }
 
-            Utilities.message(player,
-                    "#14abc9===========================================",
-                    " #6928f7AstraVisus #ff4a4av" + pluginInstance.getDescription().getVersion() + " #14abc9By AstralisVox",
-                    "#14abc9===========================================",
-                    " #14abc9Server Brand: #ff4a4a" + Bukkit.getName(),
-                    " #14abc9Server Version: #ff4a4a" + Bukkit.getServer().getVersion(),
-                    " #14abc9Online Mode: #ff4a4a" + Bukkit.getOnlineMode(),
-                    " #14abc9Players Online: #ff4a4a" + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers(),
-                    " #14abc9AstraVisus Commands: #ff4a4a" + Utilities.setCommand().size() + " / 2 #14abc9registered",
-                    " #14abc9Currently Installed Plugins...",
-                    " " + plugins,
-                    "#14abc9==========================================="
+            List<String> debugMessages = List.of(
+                "#14abc9===========================================",
+                " #6928f7AstraVisus #ff4a4av" + pluginInstance.getDescription().getVersion() + " #14abc9By AstralisVox",
+                "#14abc9===========================================",
+                " #14abc9Server Brand: #ff4a4a" + Bukkit.getName(),
+                " #14abc9Server Version: #ff4a4a" + Bukkit.getServer().getVersion(),
+                " #14abc9Online Mode: #ff4a4a" + Bukkit.getOnlineMode(),
+                " #14abc9Players Online: #ff4a4a" + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers(),
+                " #14abc9AstraVisus Commands: #ff4a4a" + Utilities.setCommand().size() + " / 2 #14abc9registered",
+                " #14abc9Currently Installed Plugins...",
+                " " + plugins,
+                "#14abc9==========================================="
             );
+
+            Utilities.message(player, Utilities.parseList(debugMessages));
             return;
         }
 
