@@ -1,6 +1,5 @@
 package me.astralisvox.astravisus;
 
-import me.astralisvox.astralibs.PluginUpdater;
 import me.astralisvox.astralibs.Utilities;
 import me.astralisvox.astravisus.commands.NightVisionCommand;
 import me.astralisvox.astravisus.commands.PluginCommand;
@@ -8,7 +7,6 @@ import me.astralisvox.astravisus.events.PlayerListener;
 import me.astralisvox.astravisus.utils.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,6 +41,8 @@ public final class AstraVisus extends JavaPlugin {
         userDataHandler = new UserDataHandler(pluginInstance);
         messageHandler = new MessageHandler(fileManager.getMessagesFile().getConfig());
 
+        updateChecker = new UpdateChecker(pluginInstance);
+
         // Populate the user data map with entries from the user data file
         getUserDataHandler().populateUserDataMap();
 
@@ -50,7 +50,7 @@ public final class AstraVisus extends JavaPlugin {
         setupEconomy();
         registerEvents();
         registerCommands();
-        updateChecker.pluginUpdates(pluginInstance);
+        getUpdateChecker().pluginUpdatesConsole();
     }
 
     public void onReload() {
@@ -101,4 +101,8 @@ public final class AstraVisus extends JavaPlugin {
         return userDataHandler;
     }
     public MessageHandler getMessageHandler() {return messageHandler;}
+
+    public UpdateChecker getUpdateChecker() {
+       return updateChecker;
+    }
 }

@@ -4,6 +4,7 @@ import me.astralisvox.astralibs.Utilities;
 import me.astralisvox.astravisus.AstraVisus;
 import me.astralisvox.astravisus.utils.MessageHandler;
 import me.astralisvox.astravisus.utils.NightVisionHandler;
+import me.astralisvox.astravisus.utils.UpdateChecker;
 import me.astralisvox.astravisus.utils.UserDataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -43,7 +44,7 @@ public class PlayerListener implements Listener {
         final Player player = playerJoinEvent.getPlayer();
 
         if(configFile.getBoolean("Update_Notify") && Utilities.checkPermissions(player, true, "astravisus.updates", "astravisus.admin")) {
-            pluginInstance.updateChecker();
+            pluginInstance.getUpdateChecker().pluginUpdatesPlayer(player);
         }
 
         if(player.getFirstPlayed() == System.currentTimeMillis()) {
@@ -121,9 +122,6 @@ public class PlayerListener implements Listener {
 
             // Re-applies night vision to the player after they respawn
             applyNightVision(player);
-
-            NightVisionHandler nightVisionToggle = new NightVisionHandler(pluginInstance, player);
-            nightVisionToggle.toggleSoundEffect(player, "Night_Vision_Applied");
         }, 20);
     }
 

@@ -14,26 +14,24 @@ public class MessageHandler {
     private final FileConfiguration messagesConfig;
     private final Set<String> missingMessage = new HashSet<>();
 
-    private String prefix;
-
     public MessageHandler(FileConfiguration messagesConfig) {
         this.messagesConfig = messagesConfig;
 
     }
 
     public String get(String path, String fallback) {
-        String raw = messagesConfig.getString(path);
+        String message = messagesConfig.getString(path);
 
-        if (raw == null) {
+        if (message == null) {
             getErrorMessage(path);
-            return prefix + translate(fallback);
+            return getPrefix() + fallback;
         }
 
-        if (raw.isEmpty()) {
+        if (message.isEmpty()) {
             return "";
         }
 
-        return prefix + translate(raw);
+        return getPrefix() + message;
     }
 
     public String getPrefix() {
@@ -56,10 +54,5 @@ public class MessageHandler {
                 "I have set a fallback message to take it's place until the issue is fixed.",
                 "To resolve this, please locate " + message + " in the " + messagesConfig.getName() + " and fix the issue."
         );
-    }
-
-    private String translate(String msg) {
-        // Supports hex (#RRGGBB) + legacy & codes
-        return ChatColor.translateAlternateColorCodes('&', msg);
     }
 }
