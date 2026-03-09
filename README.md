@@ -6,7 +6,7 @@ For further information about this plugin, please see the [wiki](https://github.
 
 ***
 
-## **Features**
+![Banner](https://i.imgur.com/QJhFX3n.png)
 
 Below you can find all the different features that I've implemented into the plugin. If you have any features that you're wanting added to this plugin. Please send me a feature request via the [issues](https://github.com/AstralisVox/AstraVisus/issues) page, as that allows me to keep track of all the suggestions in one location.
 
@@ -22,11 +22,11 @@ Below you can find all the different features that I've implemented into the plu
 
 ***
 
-## Installation, Downloading & Updating
+![Banner](https://i.imgur.com/vbwYtZA.png)
 
 ### Downloading:
 
-You can always find the latest version by visiting the [Spigot](https://www.spigotmc.org/resources/astravisus.133245/)
+You can always find the latest version by visiting the [Spigot](https://www.spigotmc.org/resources/omegavision.73013/)
 page. This plugin works on all Bukkit/Spigot/Paper servers from version 1.13 and above.
 
 ### Installing:
@@ -41,7 +41,7 @@ I have implemented an Auto Config Updater that will automatically update all the
 
 ***
 
-## **Support**
+![Banner](https://i.imgur.com/PcC4woi.png)
 
 If at any stage you come across a sneaky bug that I was unable to locate during testing please do not hesitate to get in contact with me. When you are finding yourself in need to contact me about any of my plugins, if it is relating to a bug, please try and provide as much detail as possible, including server version, plugin version and the steps taken to get the bug. This allows me to focus on the bug a lot quicker and allows me to get an update released sooner in order to resolve the bug.
 
@@ -54,10 +54,3 @@ I have spent some time setting up a discord server that you are welcome to join 
 
 Of course, we have the normal contact method of using the SpigotMC website or McMarket website. You can locate my profile here: https://www.spigotmc.org/members/astralisvox.14953/, Feel free to privately message me about anything related to any of my plugins.
 
-### **GitHub**
-
-As you can tell, I also have set everything here on github as well. So if you need any support feel free to post a issue for the related plugin
-
-***
-
-Lastly, I would like to say Thank you for supporting my plugins and supporting me as a developer. While I am still somewhat new to plugin development I try to provide the best support and the best plugins for you guys (and girls). Again, Thank you. 
