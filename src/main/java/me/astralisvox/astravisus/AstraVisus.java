@@ -5,10 +5,7 @@ import me.astralisvox.astralibs.Utilities;
 import me.astralisvox.astravisus.commands.NightVisionCommand;
 import me.astralisvox.astravisus.commands.PluginCommand;
 import me.astralisvox.astravisus.events.PlayerListener;
-import me.astralisvox.astravisus.utils.FileManager;
-import me.astralisvox.astravisus.utils.MessageHandler;
-import me.astralisvox.astravisus.utils.Placeholders;
-import me.astralisvox.astravisus.utils.UserDataHandler;
+import me.astralisvox.astravisus.utils.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -20,6 +17,7 @@ public final class AstraVisus extends JavaPlugin {
     private FileManager fileManager;
     private UserDataHandler userDataHandler;
     private MessageHandler messageHandler;
+    private UpdateChecker updateChecker;
 
     private static Economy econ = null;
 
@@ -29,8 +27,13 @@ public final class AstraVisus extends JavaPlugin {
         Utilities.setInstance(pluginInstance);
 
         Utilities.logInfo(false,
-                "AstraVisus v" + pluginInstance.getDescription().getVersion() + " by AstralisVox",
-                "Running on version: " + Bukkit.getVersion()
+
+             "___    __      __",
+            "/ _ \\   \\ \\    / /",
+            "/ /_\\ \\   \\ \\  / /  AstraVisus v" + pluginInstance.getDescription().getVersion() + " by AstralisVox",
+            "|  _  |    \\ \\/ /   Running on version: " + Bukkit.getVersion(),
+            "| | | |     \\  /",
+            "\\_| |_/      \\/"
         );
 
         fileManager = new FileManager(pluginInstance);
@@ -44,10 +47,10 @@ public final class AstraVisus extends JavaPlugin {
         getUserDataHandler().populateUserDataMap();
 
         setupPlaceholders(pluginInstance);
-        updateChecker();
         setupEconomy();
         registerEvents();
         registerCommands();
+        updateChecker.pluginUpdates(pluginInstance);
     }
 
     public void onReload() {
@@ -80,27 +83,6 @@ public final class AstraVisus extends JavaPlugin {
             );
         } else {
             new Placeholders(pluginInstance).register();
-        }
-    }
-
-    public void updateChecker() {
-        if(getFileManager().getConfigFile().getConfig().getBoolean("Update_Notify")) {
-            new PluginUpdater(pluginInstance, 73013).getVersion(version -> {
-                int spigotVersion = Integer.parseInt(version.replace(".", ""));
-                int pluginVersion = Integer.parseInt(pluginInstance.getDescription().getVersion().replace(".", ""));
-
-                if(pluginVersion >= spigotVersion) {
-                    Utilities.logInfo(true, "You are already running the latest version");
-                    return;
-                }
-
-                PluginDescriptionFile pdf = pluginInstance.getDescription();
-                Utilities.logWarning(true,
-                        "A new version of " + pdf.getName() + " is avaliable!",
-                        "Current Version: " + pdf.getVersion() + " > New Version: " + version,
-                        "Grab it here: https://www.spigotmc.org/resources/astravisus.133245/"
-                );
-            });
         }
     }
 

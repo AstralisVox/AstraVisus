@@ -22,7 +22,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PlayerListener implements Listener {
     private final AstraVisus pluginInstance;
     private final FileConfiguration configFile;
-    private final MessageHandler messagesHandler;
 
     private final UserDataHandler userDataHandler;
     private final boolean particleEffects;
@@ -31,10 +30,8 @@ public class PlayerListener implements Listener {
 
     public PlayerListener(final AstraVisus pluginInstance) {
         this.pluginInstance = pluginInstance;
-
         configFile = pluginInstance.getFileManager().getConfigFile().getConfig();
         userDataHandler = pluginInstance.getUserDataHandler();
-        messagesHandler = pluginInstance.getMessageHandler();
 
         particleEffects = configFile.getBoolean("Night_Vision_Settings.Particle_Effects");
         ambientEffects = configFile.getBoolean("Night_Vision_Settings.Particle_Ambient");

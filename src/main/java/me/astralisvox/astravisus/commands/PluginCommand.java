@@ -63,13 +63,13 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
 
             // Check if the player has permission to reload the plugin
             if(!Utilities.checkPermissions(player, true, "astravisus.reload", "astravisus.admin")) {
-                Utilities.message(player, messageHandler.get("No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
+                Utilities.message(player, messageHandler.get("Admin.No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
                 return;
             }
 
             // Reload the plugin and send a message to the player telling them the plugin has reloaded.
             pluginInstance.onReload();
-            Utilities.message(player, messageHandler.get("Plugin_Reload", "#f63e3eAstraVisus has successfully been reloaded."));
+            Utilities.message(player, messageHandler.get("Admin.Reloaded", "#f63e3eAstraVisus has successfully been reloaded."));
             return;
         }
 
@@ -152,7 +152,7 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
         if(commandSender instanceof Player player) {
 
             if(!Utilities.checkPermissions(player, true, "astravisus.debug", "astravisus.admin")) {
-                Utilities.message(player, messageHandler.get("No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
+                Utilities.message(player, messageHandler.get("Admin.No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
                 return;
             }
 

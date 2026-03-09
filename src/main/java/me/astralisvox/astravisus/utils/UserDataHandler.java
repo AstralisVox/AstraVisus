@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,12 +39,12 @@ public class UserDataHandler {
      */
     public void populateUserDataMap() {
         Bukkit.getScheduler().runTaskAsynchronously(pluginInstance, () -> {
-            if(userDataFile.getConfigurationSection("Users.").getKeys(false).isEmpty()) {
+            if(Objects.requireNonNull(userDataFile.getConfigurationSection("Users.")).getKeys(false).isEmpty()) {
                 return;
             }
 
             getUserDataMap().clear();
-            for(String user : userDataFile.getConfigurationSection("Users.").getKeys(false)) {
+            for(String user : Objects.requireNonNull(userDataFile.getConfigurationSection("Users.")).getKeys(false)) {
                 OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(user));
 
                 if(player.isOnline()) {

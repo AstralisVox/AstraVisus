@@ -21,23 +21,6 @@ public class MessageHandler {
 
     }
 
-    private void loadPrefix() {
-        String raw = messagesConfig.getString("Plugin_Prefix");
-
-        if (raw == null) {
-            getErrorMessage("Plugin_Prefix");
-            prefix = translate("#8c8c8c[#2b9bbf&lOV#8c8c8c] ");
-            return;
-        }
-
-        if (raw.equalsIgnoreCase("none")) {
-            prefix = "";
-            return;
-        }
-
-        prefix = translate(raw + " ");
-    }
-
     public String get(String path, String fallback) {
         String raw = messagesConfig.getString(path);
 
@@ -53,30 +36,15 @@ public class MessageHandler {
         return prefix + translate(raw);
     }
 
-    public String console(String path, String fallback) {
-        String raw = messagesConfig.getString(path);
-
-        if (raw == null) {
-            getErrorMessage(path);
-            return translate(fallback);
-        }
-
-        if (raw.isEmpty()) {
-            return "";
-        }
-
-        return translate(raw);
-    }
-
     public String getPrefix() {
-        if(messagesConfig.getString("Plugin_Prefix") == null) {
-            getErrorMessage("Plugin_Prefix");
-            return "#8c8c8c[#2b9bbf&lOV#8c8c8c]" + " ";
+        if(messagesConfig.getString("Prefix") == null) {
+            getErrorMessage("Prefix");
+            return "#8c8c8c[#2b9bbf&lAV#8c8c8c]" + " ";
         }
-        if(Objects.requireNonNull(messagesConfig.getString("Plugin_Prefix")).equalsIgnoreCase("none")) {
+        if(Objects.requireNonNull(messagesConfig.getString("Prefix")).equalsIgnoreCase("none")) {
             return "";
         }
-        return messagesConfig.getString("Plugin_Prefix") + " ";
+        return messagesConfig.getString("Prefix") + " ";
     }
 
     private void getErrorMessage(final String message) {

@@ -67,7 +67,7 @@ public class NightVisionCommand extends GlobalCommand implements TabCompleter {
 
                     // Check if the player has permission to use the list command
                     if(!Utilities.checkPermissions(player, true, "astravisus.nightvision.list", "astravisus.nightvision.admin", "astravisus.admin")) {
-                        Utilities.message(player, messageHandler.get("No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
+                        Utilities.message(player, messageHandler.get("Admin.No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
                         return;
                     }
 
