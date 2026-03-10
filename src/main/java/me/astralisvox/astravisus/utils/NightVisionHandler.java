@@ -21,7 +21,6 @@ public class NightVisionHandler {
     private final boolean particleEffects;
     private final boolean particleAmbients;
     private final boolean nightVisionIcon;
-    private final boolean actionBarMessages;
 
     private final String nightVisionApplied;
     private final String nightVisionRemoved;
@@ -39,7 +38,6 @@ public class NightVisionHandler {
         particleEffects = configFile.getBoolean("Night_Vision_Settings.Particle_Effects");
         particleAmbients = configFile.getBoolean("Night_Vision_Settings.Particle_Ambient");
         nightVisionIcon = configFile.getBoolean("Night_Vision_Settings.Night_Vision_Icon");
-        actionBarMessages = configFile.getBoolean("Night_Vision_Settings.ActionBar_Messages");
 
         nightVisionApplied = messagesHandler.get("NightVision.Enabled", "#2b9bbfNight Vision has been applied!");
         nightVisionRemoved = messagesHandler.get("NightVision.Disabled", "#f63e3eNight Vision has been removed!");
@@ -68,6 +66,7 @@ public class NightVisionHandler {
             // Remove night vision from the player
             userDataHandler.setEffectStatus(player.getUniqueId(), false, UserDataHandler.NIGHT_VISION);
             Utilities.removePotionEffect(player, PotionEffectType.NIGHT_VISION);
+            userDataHandler.saveUserDataToFile(player.getUniqueId());
 
             // Send night vision removal messages
             sendNightVisionRemovedMessages(player);
@@ -111,6 +110,7 @@ public class NightVisionHandler {
         if((boolean) userDataHandler.getEffectStatus(target.getUniqueId(), UserDataHandler.NIGHT_VISION)) {
             // Remove night vision from the target
             userDataHandler.setEffectStatus(target.getUniqueId(), false, UserDataHandler.NIGHT_VISION);
+            userDataHandler.saveUserDataToFile(target.getUniqueId());
             Utilities.removePotionEffect(target, PotionEffectType.NIGHT_VISION);
 
             // Send night vision removal messages
@@ -206,10 +206,10 @@ public class NightVisionHandler {
     private void applyNightVision(final Player player, final int duration) {
 
         userDataHandler.setEffectStatus(player.getUniqueId(), true, UserDataHandler.NIGHT_VISION);
-        userDataHandler.setEffectStatus(player.getUniqueId(), false, UserDataHandler.LIMIT_REACHED);
         Utilities.addPotionEffect(player, PotionEffectType.NIGHT_VISION, duration ,1, particleEffects, particleAmbients, nightVisionIcon);
         //toggleSoundEffect(player, "Night_Vision_Applied");
         sendNightVisionAppliedMessages(player);
+        userDataHandler.saveUserDataToFile(player.getUniqueId());
     }
 
     /**
@@ -220,6 +220,7 @@ public class NightVisionHandler {
      */
     public void applyNightVisionGlobal(final Player player) {
         userDataHandler.setEffectStatus(player.getUniqueId(), true, UserDataHandler.NIGHT_VISION);
+        userDataHandler.saveUserDataToFile(player.getUniqueId());
         Utilities.addPotionEffect(player, PotionEffectType.NIGHT_VISION, 60 * 60 * 24 * 100 ,1, particleEffects, particleAmbients, nightVisionIcon);
 
         //toggleSoundEffect(player, "Night_Vision_Applied");
@@ -247,8 +248,7 @@ public class NightVisionHandler {
      */
     private void sendNightVisionRemovedMessages(final Player player) {
         Utilities.message(player, nightVisionRemoved);
-        if(actionBarMessages)
-        {
+        if(configFile.getBoolean("Night_Vision_Settings.ActionBar_Message")) {
             Utilities.sendActionBar(player, nightVisionRemovedActionbar);
         }
     }

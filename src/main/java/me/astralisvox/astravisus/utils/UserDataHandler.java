@@ -12,10 +12,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class UserDataHandler {
     public static final String NIGHT_VISION = "Night_Vision";
-    public static final String LIMIT_REACHED = "Limit_Reached";
-    public static final String LIMIT_REACHED_TIME = "Limit_Reached_Time";
-    public static final String RESET_TIMER_ACTIVE = "Reset_Timer_Active";
-    public static final String LIMIT = "Limit";
     private final AstraVisus pluginInstance;
     private final FileConfiguration userDataFile;
     private final Map<UUID, Map<String, Object>> userDataMap = new ConcurrentHashMap<>();
@@ -63,10 +59,6 @@ public class UserDataHandler {
         getUserDataMap().putIfAbsent(playerUUID, new ConcurrentHashMap<>());
 
         setEffectStatus(playerUUID, userDataFile.getBoolean("Users." + playerUUID + "." + NIGHT_VISION, false), NIGHT_VISION);
-        setEffectStatus(playerUUID, userDataFile.getBoolean("Users." + playerUUID + "." + LIMIT_REACHED, false), LIMIT_REACHED);
-        setEffectStatus(playerUUID, userDataFile.getBoolean("Users." + playerUUID + "." + RESET_TIMER_ACTIVE, false), RESET_TIMER_ACTIVE);
-        setEffectStatus(playerUUID, userDataFile.getLong("Users." + playerUUID + "." + LIMIT_REACHED_TIME, 0), LIMIT_REACHED_TIME);
-        setEffectStatus(playerUUID, userDataFile.getInt("Users." + playerUUID + "." + LIMIT, 0), LIMIT);
     }
 
     /**
@@ -77,10 +69,6 @@ public class UserDataHandler {
     public void saveUserDataToFile() {
         for (UUID userUUID : getUserDataMap().keySet()) {
             userDataFile.set("Users." + userUUID + "." + NIGHT_VISION, getUserDataMap().get(userUUID).getOrDefault(NIGHT_VISION, false));
-            userDataFile.set("Users." + userUUID + "." + LIMIT_REACHED, getUserDataMap().get(userUUID).getOrDefault(LIMIT_REACHED, false));
-            userDataFile.set("Users." + userUUID + "." + RESET_TIMER_ACTIVE, getUserDataMap().get(userUUID).getOrDefault(RESET_TIMER_ACTIVE, false));
-            userDataFile.set("Users." + userUUID + "." + LIMIT_REACHED_TIME, getUserDataMap().get(userUUID).getOrDefault(LIMIT_REACHED_TIME, 0));
-            userDataFile.set("Users." + userUUID + "." + LIMIT, getUserDataMap().get(userUUID).getOrDefault(LIMIT, 0));
         }
         pluginInstance.getFileManager().getUserDataFile().saveConfig();
         userDataMap.clear();
@@ -100,10 +88,6 @@ public class UserDataHandler {
 
         Bukkit.getScheduler().runTaskAsynchronously(pluginInstance, () -> {
             userDataFile.set("Users." + playerUUID + "." + NIGHT_VISION, getUserDataMap().get(playerUUID).getOrDefault(NIGHT_VISION, false));
-            userDataFile.set("Users." + playerUUID + "." + LIMIT_REACHED, getUserDataMap().get(playerUUID).getOrDefault(LIMIT_REACHED, false));
-            userDataFile.set("Users." + playerUUID + "." + RESET_TIMER_ACTIVE, getUserDataMap().get(playerUUID).getOrDefault(RESET_TIMER_ACTIVE, false));
-            userDataFile.set("Users." + playerUUID + "." + LIMIT_REACHED_TIME, getUserDataMap().get(playerUUID).getOrDefault(LIMIT_REACHED_TIME, 0));
-            userDataFile.set("Users." + playerUUID + "." + LIMIT, getUserDataMap().get(playerUUID).getOrDefault(LIMIT, 0));
             pluginInstance.getFileManager().getUserDataFile().saveConfig();
             userDataMap.remove(playerUUID);
         });

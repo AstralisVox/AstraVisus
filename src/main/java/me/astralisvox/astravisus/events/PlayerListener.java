@@ -52,11 +52,14 @@ public class PlayerListener implements Listener {
 
         if(configFile.getBoolean("Night_Vision_Settings.Night_Vision_Login")
          && (boolean) userDataHandler.getEffectStatus(player.getUniqueId(), UserDataHandler.NIGHT_VISION)
-         && Utilities.checkPermissions(player, true, "astravisus.nightivison.login", "astravisus.nightvision.admin", "astravisus.admin")) {
+         && Utilities.checkPermissions(player, true, "astravisus.nightvision.login", "astravisus.nightvision.admin", "astravisus.admin")) {
             applyNightVision(player);
             userDataHandler.setEffectStatus(player.getUniqueId(), true, UserDataHandler.NIGHT_VISION);
+            userDataHandler.saveUserDataToFile(player.getUniqueId());
         } else {
+            Utilities.removePotionEffect(player, PotionEffectType.NIGHT_VISION);
             userDataHandler.setEffectStatus(player.getUniqueId(), false, UserDataHandler.NIGHT_VISION);
+            userDataHandler.saveUserDataToFile(player.getUniqueId());
         }
     }
 
@@ -70,25 +73,29 @@ public class PlayerListener implements Listener {
     public void onWorldChange(PlayerChangedWorldEvent playerChangedWorldEvent) {
         final Player player = playerChangedWorldEvent.getPlayer();
 
+        Utilities.logInfo(true, "Testing world change event for " + player.getName());
         // Checks if the world disabled setting has been enabled.
         if(!configFile.getBoolean("Night_Vision_World_Settings.Enabled")) {
             return;
         }
+        Utilities.logInfo(true, "Testing world change event 2 for " + player.getName());
 
         // Checks if the player has permission to bypass the night vision change world feature
         if(Utilities.checkPermissions(player, true, "astravisus.nightvision.world.bypass", "astravisus.nightvision.admin", "astravisus.admin")) {
             return;
         }
+        Utilities.logInfo(true, "Testing world change event 3 for " + player.getName());
 
         // Checks the players new world against the list of worlds in the config
         for(String worldName : configFile.getStringList("Night_Vision_World_Settings.Disabled_Worlds.Worlds")) {
             if(!(boolean) userDataHandler.getEffectStatus(player.getUniqueId(), UserDataHandler.NIGHT_VISION)) {
                 return;
             }
-
+            Utilities.logInfo(true, "Players World is: " + player.getWorld().getName());
             // If the world name is in the config world list, remove night vision from the player
             if(player.getWorld().getName().equalsIgnoreCase(worldName)) {
                 userDataHandler.setEffectStatus(player.getUniqueId(), false, UserDataHandler.NIGHT_VISION);
+                userDataHandler.saveUserDataToFile(player.getUniqueId());
                 Utilities.removePotionEffect(player, PotionEffectType.NIGHT_VISION);
                 return;
             }

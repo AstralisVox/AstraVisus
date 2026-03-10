@@ -65,13 +65,13 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
 
             // Check if the player has permission to reload the plugin
             if(!Utilities.checkPermissions(player, true, "astravisus.reload", "astravisus.admin")) {
-                Utilities.message(player, messageHandler.get("Admin.No_Permission", "#f63e3eSorry, but you don't have permission to do that."));
+                Utilities.message(player, messageHandler.get("Admin.No_Permission", "&#f63e3eSorry, but you don't have permission to do that."));
                 return;
             }
 
             // Reload the plugin and send a message to the player telling them the plugin has reloaded.
             pluginInstance.onReload();
-            Utilities.message(player, messageHandler.get("Admin.Reloaded", "#f63e3eAstraVisus has successfully been reloaded."));
+            Utilities.message(player, messageHandler.get("Admin.Reloaded", "&#f63e3eAstraVisus has successfully been reloaded."));
             return;
         }
 
@@ -97,7 +97,7 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
                 return;
             }
 
-            Utilities.message(player, prefix + "#86DE0FAstraVisus #CA002Ev" + pluginInstance.getDescription().getVersion() + " #86DE0FBy AstralisVox");
+            Utilities.message(player, prefix + "&#86DE0FAstraVisus &#CA002Ev" + pluginInstance.getDescription().getVersion() + " &#86DE0FBy AstralisVox");
             return;
         }
 
@@ -159,21 +159,21 @@ public class PluginCommand extends GlobalCommand implements TabCompleter {
             }
 
             for(Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-                plugins.append("#ff4a4a").append(plugin.getName()).append(" ").append(plugin.getDescription().getVersion()).append("#14abc9, ");
+                plugins.append("&#ff4a4a").append(plugin.getName()).append(" ").append(plugin.getDescription().getVersion()).append("&#14abc9, ");
             }
 
             List<String> debugMessages = List.of(
-                "#14abc9===========================================",
-                " #6928f7AstraVisus #ff4a4av" + pluginInstance.getDescription().getVersion() + " #14abc9By AstralisVox",
-                "#14abc9===========================================",
-                " #14abc9Server Brand: #ff4a4a" + Bukkit.getName(),
-                " #14abc9Server Version: #ff4a4a" + Bukkit.getServer().getVersion(),
-                " #14abc9Online Mode: #ff4a4a" + Bukkit.getOnlineMode(),
-                " #14abc9Players Online: #ff4a4a" + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers(),
-                " #14abc9AstraVisus Commands: #ff4a4a" + Utilities.setCommand().size() + " / 2 #14abc9registered",
-                " #14abc9Currently Installed Plugins...",
+                "&#14abc9===========================================",
+                " &#6928f7AstraVisus &#ff4a4av" + pluginInstance.getDescription().getVersion() + " &#14abc9By AstralisVox",
+                "&#14abc9===========================================",
+                " &#14abc9Server Brand: &#ff4a4a" + Bukkit.getName(),
+                " &#14abc9Server Version: &#ff4a4a" + Bukkit.getServer().getVersion(),
+                " &#14abc9Online Mode: &#ff4a4a" + Bukkit.getOnlineMode(),
+                " &#14abc9Players Online: &#ff4a4a" + Bukkit.getOnlinePlayers().size() + " / " + Bukkit.getMaxPlayers(),
+                " &#14abc9AstraVisus Commands: &#ff4a4a" + Utilities.setCommand().size() + " / 2 &#14abc9registered",
+                " &#14abc9Currently Installed Plugins...",
                 " " + plugins,
-                "#14abc9==========================================="
+                "&#14abc9==========================================="
             );
 
             Utilities.message(player, Utilities.parseList(debugMessages));

@@ -7,7 +7,6 @@
 #
 #  Placeholders:
 #    %player%  - Target player's name
-#    %state%   - "enabled" or "disabled"
 #    %cost%    - Cost of enabling NightVision
 #
 # -------------------------------------------------------------------------------------------
@@ -29,6 +28,7 @@ NightVision:
   Already_Disabled: "&eNightVision is already disabled."
 
   # ActionBar messages (only used if ActionBar_Message is enabled in config.yml)
+  # Note: These do not support HEX colours.
   ActionBar:
     Enabled: "&aNightVision &7→ &aON"
     Disabled: "&cNightVision &7→ &cOFF"
