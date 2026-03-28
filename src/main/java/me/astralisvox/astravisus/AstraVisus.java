@@ -7,9 +7,14 @@ import me.astralisvox.astravisus.commands.PluginCommand;
 import me.astralisvox.astravisus.events.PlayerListener;
 import me.astralisvox.astravisus.utils.*;
 import net.milkbowl.vault.economy.Economy;
+import org.bstats.bukkit.Metrics;
+import org.bstats.charts.MultiLineChart;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class AstraVisus extends JavaPlugin {
     private AstraVisus pluginInstance;
@@ -48,11 +53,18 @@ public final class AstraVisus extends JavaPlugin {
         // Populate the user data map with entries from the user data file
         getUserDataHandler().populateUserDataMap();
 
-        setupPlaceholders(pluginInstance);
+        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            setupPlaceholders(pluginInstance);
+        } else {
+            Utilities.logInfo(true, "This plugin requires PlaceholderAPI to be installed if you are",
+                    " wanting to use the placeholders that this plugin offers.");
+        }
+
         setupEconomy();
         registerEvents();
         registerCommands();
         getUpdateChecker().pluginUpdatesConsole();
+        registerBStats();
     }
 
     @Override
@@ -92,6 +104,18 @@ public final class AstraVisus extends JavaPlugin {
         } else {
             new Placeholders(pluginInstance).register();
         }
+    }
+
+    private void registerBStats() {
+        int pluginID = 30440;
+
+        Metrics metrics = new Metrics(this, pluginID);
+        metrics.addCustomChart(new MultiLineChart("players_and_servers", () -> {
+            Map<String, Integer> valueMap = new HashMap<>();
+            valueMap.put("servers", 1);
+            valueMap.put("players", Bukkit.getOnlinePlayers().size());
+            return valueMap;
+        }));
     }
 
     public static Economy getEcon() {
